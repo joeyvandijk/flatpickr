@@ -686,11 +686,13 @@ function Flatpickr(element, config) {
 
 		else if (e.target.classList.contains("flatpickr-day") && !e.target.classList.contains("disabled")) {
 			const isPrevMonthDay = e.target.classList.contains("prevMonthDay"),
-				isNextMonthDay = e.target.classList.contains("nextMonthDay"),
-				monthNum = self.currentMonth - isPrevMonthDay + isNextMonthDay;
+				isNextMonthDay = e.target.classList.contains("nextMonthDay");
+			let monthNum = self.currentMonth - isPrevMonthDay + isNextMonthDay;
 
-			if (isPrevMonthDay || isNextMonthDay)
+			if (isPrevMonthDay || isNextMonthDay) {
 				changeMonth(+isNextMonthDay - isPrevMonthDay);
+				monthNum = self.currentMonth;
+			}
 
 			self.selectedDateObj = new Date(self.currentYear, monthNum, e.target.innerHTML);
 
